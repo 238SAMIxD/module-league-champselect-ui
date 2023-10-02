@@ -10,16 +10,22 @@ function App() {
       spellsEnabled: true,
       coachesEnabled: false,
       blueTeam: {
+        coach: '',
+        color: 'rgb(0,151,196)',
+        logo: '',
         name: 'Team Blue',
         score: 0,
-        coach: '',
-        color: 'rgb(0,151,196)'
+        standing: '',
+        tag: 'BLU'
       },
       redTeam: {
+        coach: '',
+        color: 'rgb(222,40,70)',
+        logo: '',
         name: 'Team Red',
         score: 0,
-        coach: '',
-        color: 'rgb(222,40,70)'
+        standing: '',
+        tag: 'RED'
       },
       patch: ''
     }
@@ -42,6 +48,14 @@ function App() {
         .style.getPropertyValue('--red-team')
 
       function changeColors(e) {
+        setConfig({frontend: {
+          scoreEnabled: config.frontend.scoreEnabled,
+          spellsEnabled: config.frontend.spellsEnabled,
+          coachesEnabled: config.frontend.coachesEnabled,
+          blueTeam: e.teams.blueTeam,
+          redTeam: e.teams.redTeam,
+          patch: config.frontend.patch
+        }})
         if (e.teams.blueTeam.color !== '#000000') {
           document
             .querySelector(':root')
